@@ -5,6 +5,7 @@
 
 environment.systemPackages = with pkgs; [
     hugo
+    wiki-tui
     obs-studio
     mangowc
     nix-search-cli
@@ -16,6 +17,7 @@ environment.systemPackages = with pkgs; [
     timeshift
     swaybg
     waypaper
+    ripgrep
     hyprshot
     bluetuith
     pkgs.kitty

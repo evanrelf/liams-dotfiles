@@ -4,9 +4,11 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./hardware-configuration.nix 
       ./firefox.nix
       ./apps.nix
+      ./zsh.nix
+      ./tmux.nix
       ./vim.nix
     ];
 
@@ -97,6 +99,11 @@
     };
   };
 
+  # services.undervolt = {
+	# enable = true;
+ 	# coreOffset = -50; 
+	# };
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -109,19 +116,6 @@
 
 # Nix Defined Programs
  # Set ZSH as Shell
-  programs.zsh = {
-    enable = true;
-    shellAliases = {
-          conf = "du -a ~/.config/* | awk '{print $2}' | fzf --preview 'less {}' | xargs -r $EDITOR";
-          dox = "du -a ~/Documents/* | awk '{print $2}' | fzf --preview 'less {}' | xargs -r $EDITOR";
-          config = "doas vim /etc/nixos/configuration.nix";
-          };
-      ohMyZsh = {
-        enable = true;
-        plugins = ["vi-mode"];
-        theme = "arrow";
-      };
-    };
 
 # aaa Applications - System Wide yo
 
@@ -130,6 +124,11 @@ fonts.packages = with pkgs; [
       ubuntu-sans
       ubuntu-classic
       ubuntu-sans-mono
+      departure-mono
+      nerd-fonts.lekton
+      nerd-fonts.anonymice
+      nerd-fonts.caskaydia-cove
+      fantasque-sans-mono
         ];
 
  # Don't change this lol
