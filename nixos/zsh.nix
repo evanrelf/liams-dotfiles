@@ -10,7 +10,7 @@
           tses = "session=$(tmux list-sessions -F '#S' | fzf) || exit tmux attach -t '$session' ";
           config = "doas vim /etc/nixos/configuration.nix";
           apps = "doas vim /etc/nixos/apps.nix";
-          vimconf = "doas vim /etc/nixos/vim.nix";
+          vimconf = "doas vim /etc/nixos/nixvim.nix";
           };
       ohMyZsh = {
         enable = true;

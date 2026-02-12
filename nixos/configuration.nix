@@ -9,7 +9,8 @@
       ./apps.nix
       ./zsh.nix
       ./tmux.nix
-      ./vim.nix
+      # ./vim.nix
+      ./nixvim.nix
     ];
 
   # Basic Setup.
@@ -33,6 +34,7 @@
   users.users.liam.shell = pkgs.zsh ;
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
+  programs.virt-manager.enable = true;
   services.blueman.enable = true;
   hardware.bluetooth = {
       enable = true;
