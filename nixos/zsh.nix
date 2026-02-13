@@ -6,6 +6,7 @@
     enable = true;
     shellAliases = {
           conf = "du -a ~/.config/* | awk '{print $2}' | fzf --preview 'less {}' | xargs -r $EDITOR";
+          nixconf = "du -a /etc/nixos/* | awk '{print $2}' | fzf --preview 'less {}' | xargs -r doas $EDITOR";
           dox = "du -a ~/Documents/* | awk '{print $2}' | fzf --preview 'less {}' | xargs -r $EDITOR";
           tses = "session=$(tmux list-sessions -F '#S' | fzf) || exit tmux attach -t '$session' ";
           config = "doas vim /etc/nixos/configuration.nix";
