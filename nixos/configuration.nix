@@ -101,11 +101,6 @@
     };
   };
 
-  # services.undervolt = {
-	# enable = true;
- 	# coreOffset = -50; 
-	# };
-
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -115,11 +110,6 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
-# Nix Defined Programs
- # Set ZSH as Shell
-
-# aaa Applications - System Wide yo
 
 fonts.packages = with pkgs; [
       nerd-fonts.ubuntu
