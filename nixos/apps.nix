@@ -14,7 +14,6 @@ environment.systemPackages = with pkgs; [
     waybar
     mpv
     qutebrowser
-    timeshift
     swaybg
     waypaper
     ripgrep
@@ -23,21 +22,19 @@ environment.systemPackages = with pkgs; [
     pkgs.kitty
     pciutils
     gotop
-    nemo
     yazi
     fzf
     kdePackages.kdenlive
     git
     qbittorrent
-    wiremix
     alsa-utils
+    pulsemixer
     brightnessctl
     cmus
     cava
     zathura
     texliveFull
     typst
-    gnome-boxes
     dnsmasq
   ];
 }
