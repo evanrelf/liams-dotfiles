@@ -10,7 +10,9 @@
 
   programs.nixvim = {
     enable = true;
-    colorschemes.gruvbox.enable = true;
+    colorschemes = {
+       gruvbox-material.enable = true;
+    };
     globals.mapleader = " ";
     viAlias = true;
     defaultEditor = true;
@@ -52,7 +54,6 @@
             };
          };
         };
-      mini-pick.enable = true;
       };
 
 #LSP
