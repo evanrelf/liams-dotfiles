@@ -23,6 +23,13 @@
 
       perSystem = { config, inputs', pkgs, system, ... }: {
         _module.args.pkgs = import inputs.nixpkgs { inherit system; };
+
+        legacyPackages.nixosConfigurations.liam-tpad =
+          inputs.nixpkgs.lib.nixosSystem {
+            inherit system pkgs;
+            modules = [ ./nixos/configuration.nix ];
+            specialArgs = { inherit inputs; };
+          };
       };
     };
 }
