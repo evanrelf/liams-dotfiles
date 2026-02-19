@@ -32,26 +32,27 @@
       systems = import inputs.systems;
 
       perSystem = { config, inputs', pkgs, system, ... }: {
-        _module.args.pkgs = import inputs.nixpkgs { inherit system; };
+        _module.args.pkgs =
+          import inputs.nixpkgs {
+            inherit system;
+            # Overlays are layers of modifications applied to the package set.
+            overlays = [
+              # This is a very simple overlay that adds flake inputs into the
+              # package set so they're accessible in overlays and elsewhere.
+              (_: _: { inherit inputs; })
+              (import ./overlays/nixos-configurations.nix)
+            ];
 
-        # Here we're providing the NixOS configuration for your `liam-tpad`
-        # machine as a flake output. That means you can build it with a command
-        # like `nixos-rebuild build --flake .#liam-tpad` (no `sudo`) or switch
-        # to it with `sudo nixos-rebuild switch --flake .#liam-tpad`.
+        # To keep things simple and easy (and match what I do in my dotfiles) we
+        # re-export the entire (modified!) package set as flake outputs. That
+        # means you can `nix build` anything from Nixpkgs, plus any new stuff
+        # you add, or with modifications you've made. For example:
         #
-        # Working with a NixOS configuration doesn't require that any files be
-        # placed in the `/etc/nixos/` directory like you would traditionally. It
-        # only requires super user privileges to _apply_ to the system.
-        legacyPackages.nixosConfigurations.liam-tpad =
-          inputs.nixpkgs.lib.nixosSystem {
-            inherit system pkgs;
-            # Seed this build with the root `configuration.nix` file, which then
-            # pulls in other dependencies in its own `imports` section.
-            modules = [ ./nixos/configuration.nix ];
-            # Here's where we thread the flake inputs into the NixOS module
-            # system.
-            specialArgs = { inherit inputs; };
-          };
+        #   $ nix build .#hello
+        #
+        # will build the `hello` package from Nixpkgs, as provided by this
+        # flake.
+        legacyPackages = pkgs;
       };
     };
 }
