@@ -1,5 +1,5 @@
 
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
 
@@ -36,5 +36,6 @@ environment.systemPackages = with pkgs; [
     texliveFull
     typst
     dnsmasq
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
