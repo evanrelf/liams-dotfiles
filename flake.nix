@@ -40,6 +40,7 @@
               # This is a very simple overlay that adds flake inputs into the
               # package set so they're accessible in overlays and elsewhere.
               (_: _: { inherit inputs; })
+              (import ./overlays/packages.nix)
               (import ./overlays/nixos-configurations.nix)
             ];
 
