@@ -43,6 +43,7 @@
               (import ./overlays/packages.nix)
               (import ./overlays/nixos-configurations.nix)
             ];
+          };
 
         # To keep things simple and easy (and match what I do in my dotfiles) we
         # re-export the entire (modified!) package set as flake outputs. That
